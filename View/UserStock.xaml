@@ -1,0 +1,56 @@
+﻿<Window x:Class="TravailPratique2.View.UserStock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravailPratique2.View"
+        mc:Ignorable="d"
+        Title="UserStock" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- INFOS ELEVES Section -->
+        
+        <GroupBox  Header="INFOS USERS" Margin="0,0,0,10" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Ajouter" Margin="5,5,5,5"/>
+                <Button Content="Modifier" Margin="5,5,5,5"/>
+                <Button Content="Supprimer" Margin="5,5,5,5"/>
+                <DataGrid Grid.Row="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Firstname"/>
+                        <DataGridTextColumn Header="LastName"/>
+                        <DataGridTextColumn Header="Email"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            
+        </GroupBox>
+        
+        
+        <!-- Separator -->
+        <Separator Grid.Row="1" Margin="0,0,0,10" Grid.Column="1"/>
+        
+       
+        <GroupBox Grid.Row="0" Header="Infos Stock" Margin="0,0,0,10" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Ajouter" Margin="5,5,5,5"/>
+                <Button Content="Modifier" Margin="5,5,5,5"/>
+                <Button Content="Supprimer" Margin="5,5,5,5"/>
+            </StackPanel>
+        </GroupBox>
+        
+        
+        <Button Grid.Row="3" Content="Retourner" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Width="100" Height="30" Margin="0,0,0,20"/>
+    </Grid>
+</Window>

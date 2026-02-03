@@ -1,0 +1,46 @@
+﻿<Window x:Class="TravailPratique2.View.SupprimerVoiture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravailPratique2.View"
+        mc:Ignorable="d"
+        Title="SupprimerVoiture" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Nom de la voiture à rechercher :" />
+            <TextBox x:Name="txtvin" Grid.Row="1" Margin="0,5,0,10"/>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                <Button Content="Rechercher"
+            Click="RechercherVoiture_Click"
+            Padding="10" Margin="5"/>
+                <Button Content="Supprimer"
+            Click="SupprimerVoiture_Click"
+            Padding="10" Margin="5"
+            IsEnabled="False"
+            x:Name="btnSupprimer"/>
+            </StackPanel>
+
+            <TextBlock x:Name="txtResultat"
+           Grid.Row="3"
+           Margin="0,20,0,0"
+           TextAlignment="Center"
+           FontWeight="Bold"
+           Foreground="DarkRed"/>
+        </Grid>
+
+    </Grid>
+</Window>

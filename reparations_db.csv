@@ -1,0 +1,32 @@
+categorie,nom_de_piece,prix_approx,description,reparation_associee
+Moteur,Bougie d'allumage,15,Pièce d'allumage pour moteur,Remplacement des bougies d'allumage
+Moteur,Filtre à air,25,Filtre permettant de purifier l'air entrant dans le moteur,Remplacement du filtre à air
+Moteur,Kit de distribution,350,Ensemble de courroies pour le système de distribution du moteur,Remplacement du kit de distribution
+Transmission,Embrayage,300,Système permettant de déconnecter le moteur des roues pour passer les vitesses,Remplacement de l'embrayage
+Transmission,Boîte de vitesses,1500,Composant du système permettant de changer les rapports de vitesse,Remplacement de la boîte de vitesses
+Freinage,Disque de frein,80,Composant de frein qui aide à ralentir le véhicule,Remplacement des disques de frein
+Freinage,Plaquettes de frein,50,Composant en contact avec le disque pour ralentir le véhicule,Remplacement des plaquettes de frein
+Suspension,Amortisseur,100,Composant qui aide à contrôler les chocs et vibrations,Remplacement des amortisseurs
+Suspension,Barre stabilisatrice,120,Composant de la suspension qui réduit le roulis du véhicule,Remplacement de la barre stabilisatrice
+Système électrique,Alternateur,300,Composant qui recharge la batterie du véhicule,Remplacement de l'alternateur
+Système électrique,Batterie,100,Source d'alimentation électrique du véhicule,Remplacement de la batterie
+Système de refroidissement,Radiateur,250,Composant qui refroidit le moteur en évacuant la chaleur,Remplacement du radiateur
+Système de refroidissement,Termostat,60,Pièce qui régule la température du moteur,Remplacement du thermostat
+Échappement,Silencieux,150,Composant qui réduit le bruit des gaz d'échappement,Remplacement du silencieux
+Échappement,Collecteur d'échappement,400,Composant qui collecte les gaz d'échappement du moteur,Remplacement du collecteur d'échappement
+Carrosserie,Par-brise,200,Vitres avant du véhicule,Remplacement du pare-brise
+Carrosserie,Pare-chocs,180,Composant qui protège le véhicule lors des chocs,Remplacement du pare-chocs
+Carrosserie,Feux arrière,70,Composant d'éclairage à l'arrière du véhicule,Remplacement des feux arrière
+Carrosserie,Capot,350,Pièce de protection du moteur,Remplacement du capot
+Pneumatique,Pneu,100,Composant en caoutchouc qui assure la traction,Remplacement des pneus
+Pneumatique,Valve de pneu,15,Composant permettant d'inflater et de maintenir l'air dans les pneus,Remplacement de la valve de pneu
+Suspension,Amortisseur arrière,110,Composant de la suspension arrière qui absorbe les chocs,Remplacement de l'amortisseur arrière
+Climatisation,Compresseur de climatisation,500,Composant qui permet de refroidir l'air,Remplacement du compresseur de climatisation
+Climatisation,Filtre de cabine,40,Filtre qui nettoie l'air entrant dans l'habitacle,Remplacement du filtre de cabine
+Système d'alimentation,Injecteur,120,Composant qui pulvérise le carburant dans la chambre de combustion,Nettoyage ou remplacement des injecteurs
+Système d'alimentation,Pompe à carburant,200,Composant qui envoie le carburant vers le moteur,Remplacement de la pompe à carburant
+Système de direction,Direction assistée,400,Composant qui aide à tourner le volant avec moins de force,Réparation du système de direction assistée
+Électrique,Capteur de stationnement,100,Capteur utilisé pour détecter les obstacles lors des manœuvres,Remplacement du capteur de stationnement
+Électrique,Feu de signalisation,30,Composant d'éclairage permettant d'indiquer les intentions du conducteur,Remplacement des feux de signalisation
+Chauffage,Soufflerie de chauffage,150,Composant qui permet de diffuser l'air chaud dans l'habitacle,Remplacement de la soufflerie de chauffage
+Chauffage,Chauffage de siège,250,Composant qui chauffe les sièges du véhicule,Réparation du chauffage de siège

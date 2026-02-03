@@ -1,0 +1,113 @@
+﻿<Window x:Class="TravailPratique2.View.ProprietaireView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravailPratique2.View"
+        mc:Ignorable="d"
+        Title="Connexion" Height="450" Width="800">
+    <Grid Margin="10">
+        <TabControl>
+
+           
+            <TabItem Header="Stock Voitures">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                   
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+
+                        <Button Content="Ajouter Voiture" Click="AjouterVoiture_Click"  Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Modifier Voiture" Click="ModifierVoiture_Click" Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Supprimer Voiture" Click="SupprimerVoiture_Click" Width="80"/>
+                    </StackPanel>
+
+                   
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Voitures}" AutoGenerateColumns="False" HeadersVisibility="Column"
+                              CanUserAddRows="True" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Marque" Binding="{Binding marque, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Modèle" Binding="{Binding modele, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Année" Binding="{Binding annee, UpdateSourceTrigger=PropertyChanged }"/>
+                            <DataGridTextColumn Header="Categorie" Binding="{Binding categorie, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Prix" Binding="{Binding prixAproximatif, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Carburant" Binding="{Binding typeCarburant, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Kilometrage" Binding="{Binding kilometrage, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Couleur" Binding="{Binding couleur, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Transmission" Binding="{Binding transmission, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Vin" Binding="{Binding vin, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Proprietaire" Binding="{Binding proprietaireActuel, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Etat" Binding="{Binding etatGeneral, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Date Achat" Binding="{Binding dateAchat, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Revision" Binding="{Binding derniereRevision, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Garantie" Binding="{Binding garantitRestant, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Assurance" Binding="{Binding assurance, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            
+            <TabItem Header="Stock Pièces détachées">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+
+                        <Button Content="Ajouter Piece" Click="AjouterPiece_Click" Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Modifier Piece" Click="ModifierPiece_Click" Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Supprimer Piece" Click="SupprimerPiece_Click" Width="80"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Pieces}" AutoGenerateColumns="False" HeadersVisibility="Column"
+                              CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Nom Pièce" Binding="{Binding nom_de_piece, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <DataGridTextColumn Header="Prix Approximatif" Binding="{Binding prix_approx, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Utilisateurs -->
+            <TabItem Header="Utilisateurs">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+
+                        <Button Content="Ajouter Utilisateur" Click="AjouterUtilisateur_Click" Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Modifier Utilisateur" Click="ModifierUtilisateur_Click" Width="90" Margin="0,0,10,0"/>
+                        <Button Content="Supprimer Utilisateur" Click="SupprimerUtilisateur_Click" Width="90"/>
+                    </StackPanel>
+
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Utilisateurs}" AutoGenerateColumns="False" HeadersVisibility="Column"
+                              CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding lastName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding firstName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding email, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Rôle" Binding="{Binding role, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Login" Binding="{Binding username, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Mot de Passe" Binding="{Binding password, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

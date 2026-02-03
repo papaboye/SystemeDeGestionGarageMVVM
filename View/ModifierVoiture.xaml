@@ -1,0 +1,86 @@
+﻿<Window x:Class="TravailPratique2.View.ModifierVoiture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravailPratique2.View"
+        mc:Ignorable="d"
+        Title="ModifierVoiture" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Label Grid.Row="0" Grid.Column="0" Content="VIN :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtvin" Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <Button Content="Rechercher" Grid.Row="0" Grid.Column="2" Margin="5" Width="120" Click="RechercherVoiture_Click"/>
+
+       
+        <Label Grid.Row="1" Grid.Column="0" Content="Marque :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtmarque" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Modèle :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtmodele" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Année :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtannee" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Catégorie :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtcategorie" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Prix :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtprix" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Kilométrage :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtkilometrage" Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="7" Grid.Column="0" Content="Type de carburant :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txttc" Grid.Row="7" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="Couleur :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtcouleur" Grid.Row="8" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="1" Grid.Column="2" Content="Transmission :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txttransmission" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="2" Grid.Column="2" Content="État :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtetat" Grid.Row="2" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="3" Grid.Column="2" Content="Propriétaire :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtproprietaire" Grid.Row="3" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="4" Grid.Column="2" Content="Date Achat :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtdatea" Grid.Row="4" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="5" Grid.Column="2" Content="Dernière Révision :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtdater" Grid.Row="5" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="6" Grid.Column="2" Content="Garantie (mois) :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtgarantie" Grid.Row="6" Grid.Column="3" Margin="5"/>
+
+        <Label Grid.Row="7" Grid.Column="2" Content="Assurance :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtassurance" Grid.Row="7" Grid.Column="3" Margin="5"/>
+
+       
+        <Button Content="Confirmer la modification" Grid.Row="9" Grid.ColumnSpan="4" Margin="10" Height="45" Width="250" HorizontalAlignment="Center" Click="ConfirmerModification_Click"/>
+    
+
+    </Grid>
+</Window>

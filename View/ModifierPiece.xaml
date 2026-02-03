@@ -1,0 +1,28 @@
+﻿<Window x:Class="TravailPratique2.View.ModifierPiece"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravailPratique2.View"
+        mc:Ignorable="d"
+        Title="ModifierPiece" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Nom Piece :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtpiece" Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <Button Content="Rechercher" Grid.Row="0" Grid.Column="2" Margin="5" Width="120" Click="RechercherPiece_Click"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Prix :" VerticalAlignment="Center"/>
+        <TextBox x:Name="txtprix" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <Button Content="Confirmer la modification" Grid.Row="9" Grid.ColumnSpan="4" Margin="10" Height="45" Width="250" HorizontalAlignment="Center" Click="ConfirmerModification_Click"/>
+
+    </Grid>
+</Window>
