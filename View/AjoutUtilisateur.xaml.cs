@@ -1,67 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TravailPratique2.Models;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class AjoutUtilisateur : Window
 {
-    /// <summary>
-    /// Interaction logic for AjoutUtilisateur.xaml
-    /// </summary>
-    public partial class AjoutUtilisateur : Window
+    public AjoutUtilisateur() => InitializeComponent();
+
+    private void Ajouter_Click(object sender, RoutedEventArgs e)
     {
-        public AjoutUtilisateur()
+        var role = (cmbRole.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(txtLastName.Text) ||
+            string.IsNullOrWhiteSpace(txtFirstName.Text) ||
+            string.IsNullOrWhiteSpace(txtEmail.Text) ||
+            string.IsNullOrWhiteSpace(txtLogin.Text) ||
+            string.IsNullOrWhiteSpace(txtPassword.Password) ||
+            string.IsNullOrWhiteSpace(role))
         {
-            InitializeComponent();
+            MessageBox.Show("Veuillez remplir tous les champs.");
+            return;
         }
-        private void Ajouter_Click(object sender, RoutedEventArgs e)
+
+        using var db = new AppDbContext();
+        var login = txtLogin.Text.Trim();
+        if (db.Utilisateurs.Any(utilisateur => utilisateur.username == login))
         {
-            
-            if (string.IsNullOrEmpty(txtLastName.Text) || string.IsNullOrEmpty(txtFirstName.Text) ||
-                string.IsNullOrEmpty(txtRole.Text))
-            {
-                MessageBox.Show("Veuillez remplir tous les champs.");
-                return;
-            }
-            var utilisateur = new Utilisateur
-            {
-                lastName = txtLastName.Text,
-                firstName = txtFirstName.Text,
-                role = txtRole.Text,
-                email = txtemail.Text,
-                password= txtpwd.Text,
-                username= txtlogin.Text
-            };
-
-            try
-            {
-               
-                using (var db = new AppDbContext())
-                {
-                    db.Utilisateurs.Add(utilisateur);  
-                    db.SaveChanges();  
-                }
-
-                
-                MessageBox.Show("Utilisateur ajouté avec succès !");
-                this.Close();  
-            }
-            catch (Exception ex)
-            {
-                
-                MessageBox.Show($"Erreur lors de l'ajout de l'utilisateur: {ex.Message}");
-            }
+            MessageBox.Show("Ce nom d'utilisateur existe déjà.");
+            return;
         }
+
+        db.Utilisateurs.Add(new Utilisateur
+        {
+            lastName = txtLastName.Text.Trim(),
+            firstName = txtFirstName.Text.Trim(),
+            role = role,
+            email = txtEmail.Text.Trim(),
+            password = txtPassword.Password,
+            username = login
+        });
+        db.SaveChanges();
+
+        MessageBox.Show("Utilisateur ajouté avec succès.");
+        Close();
     }
 }
-

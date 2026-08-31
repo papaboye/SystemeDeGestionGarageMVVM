@@ -12,11 +12,11 @@ namespace TravailPratique2.Models
         [Key]
         public int id { get; set; }
         public double montantTotal { get; set; }
-        public string modePaiement { get; set; }
+        public string modePaiement { get; set; } = string.Empty;
         public double totalpieces { get; set; }
         public double coutMain { get; set; }
         public bool statut { get; set; }
         public List<Piece> p = new List<Piece>();
-        public Reparation reparationAssociee { get; set; }
+        public Reparation reparationAssociee { get; set; } = null!;
     }
 }

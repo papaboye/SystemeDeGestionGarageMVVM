@@ -1,75 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TravailPratique2.Models;
 using TravailPratique2.ViewModels;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class SupprimerPiece : Window
 {
-    /// <summary>
-    /// Interaction logic for SupprimerPiece.xaml
-    /// </summary>
-    public partial class SupprimerPiece : Window
+    private readonly ProprietaireVM _viewModel;
+    private Piece? _pieceTrouvee;
+
+    public SupprimerPiece(ProprietaireVM viewModel)
     {
-        private readonly ProprietaireVM _proprietaireVM;
-        private Piece pieceTrouvee;
+        InitializeComponent();
+        _viewModel = viewModel;
+    }
 
-        public SupprimerPiece(ProprietaireVM vm)
-        {
-            InitializeComponent();
-            _proprietaireVM = vm;
-            DataContext = _proprietaireVM;
-        }
-
-        private void SupprimerPiece_Click(object sender, RoutedEventArgs e)
-        {
-            string nomRecherche = txtNomPiece.Text.Trim();
-
-            if (string.IsNullOrEmpty(nomRecherche))
-            {
-                MessageBox.Show("Veuillez entrer le nom de la pièce à supprimer.");
-                return;
-            }
-
-        }
-    
     private void RechercherPiece_Click(object sender, RoutedEventArgs e)
+    {
+        var nom = txtNomPiece.Text.Trim();
+        if (string.IsNullOrWhiteSpace(nom))
         {
-            string nomRecherche = txtNomPiece.Text.Trim();
+            MessageBox.Show("Saisissez le nom de la pièce à rechercher.");
+            return;
+        }
 
-            if (string.IsNullOrWhiteSpace(nomRecherche))
+        using var db = new AppDbContext();
+        _pieceTrouvee = db.Pieces.FirstOrDefault(item => item.nom_de_piece == nom);
+
+        btnSupprimer.IsEnabled = _pieceTrouvee is not null;
+        txtResultat.Text = _pieceTrouvee is null
+            ? "Aucune pièce trouvée."
+            : $"{_pieceTrouvee.nom_de_piece} — {_pieceTrouvee.prix_approx:C}";
+    }
+
+    private void SupprimerPiece_Click(object sender, RoutedEventArgs e)
+    {
+        if (_pieceTrouvee is null)
+        {
+            MessageBox.Show("Recherchez d’abord une pièce.");
+            return;
+        }
+
+        var confirmation = MessageBox.Show(
+            $"Supprimer définitivement la pièce « {_pieceTrouvee.nom_de_piece} » ?",
+            "Confirmer la suppression",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (confirmation != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        try
+        {
+            using var db = new AppDbContext();
+            var piece = db.Pieces.Find(_pieceTrouvee.id);
+            if (piece is not null)
             {
-                MessageBox.Show("Veuillez entrer un nom de pièce.");
-                return;
-            }
-
-            using (var db = new AppDbContext())
-            {
-                pieceTrouvee = db.Pieces.FirstOrDefault(p => p.nom_de_piece == nomRecherche);
-
-                if (pieceTrouvee != null)
-                {
-                    txtResultat.Text = $"Nom : {pieceTrouvee.nom_de_piece}, Prix : {pieceTrouvee.prix_approx}";
-                    btnSupprimer.IsEnabled = true;
-                }
-                else
-                {
-                    txtResultat.Text = "Aucune pièce trouvée.";
-                    btnSupprimer.IsEnabled = false;
-                    pieceTrouvee = null;
-                }
+                db.Pieces.Remove(piece);
                 db.SaveChanges();
             }
+
+            _viewModel.ChargerPieces();
+            MessageBox.Show("Pièce supprimée avec succès.");
+            DialogResult = true;
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"Impossible de supprimer la pièce : {exception.Message}");
         }
     }
 }

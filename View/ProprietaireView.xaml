@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="Connexion" Height="450" Width="800">
+        Title="Gestion de garage — Propriétaire" Height="560" Width="1080"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <TabControl>
 
@@ -27,7 +28,7 @@
 
                    
                     <DataGrid Grid.Row="1" ItemsSource="{Binding Voitures}" AutoGenerateColumns="False" HeadersVisibility="Column"
-                              CanUserAddRows="True" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                              IsReadOnly="True" CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="Marque" Binding="{Binding marque, UpdateSourceTrigger=PropertyChanged}"/>
@@ -66,8 +67,10 @@
                         <Button Content="Supprimer Piece" Click="SupprimerPiece_Click" Width="80"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="1" ItemsSource="{Binding Pieces}" AutoGenerateColumns="False" HeadersVisibility="Column"
-                              CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Pieces}"
+                              SelectedItem="{Binding PieceSelectionnee}"
+                              AutoGenerateColumns="False" HeadersVisibility="Column"
+                              IsReadOnly="True" CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="Nom Pièce" Binding="{Binding nom_de_piece, UpdateSourceTrigger=PropertyChanged}"/>
@@ -93,8 +96,10 @@
                         <Button Content="Supprimer Utilisateur" Click="SupprimerUtilisateur_Click" Width="90"/>
                     </StackPanel>
 
-                    <DataGrid Grid.Row="1" ItemsSource="{Binding Utilisateurs}" AutoGenerateColumns="False" HeadersVisibility="Column"
-                              CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Utilisateurs}"
+                              SelectedItem="{Binding UtilisateurSelectionne}"
+                              AutoGenerateColumns="False" HeadersVisibility="Column"
+                              IsReadOnly="True" CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding id, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Nom" Binding="{Binding lastName, UpdateSourceTrigger=PropertyChanged}"/>
@@ -102,7 +107,6 @@
                             <DataGridTextColumn Header="Email" Binding="{Binding email, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Rôle" Binding="{Binding role, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Login" Binding="{Binding username, UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Header="Mot de Passe" Binding="{Binding password, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -1,27 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TravailPratique2.Models;
+using TravailPratique2.ViewModels;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class ModifierUtilisateur : Window
 {
-    /// <summary>
-    /// Interaction logic for ModifierUtilisateur.xaml
-    /// </summary>
-    public partial class ModifierUtilisateur : Window
+    private readonly int _utilisateurId;
+    private readonly ProprietaireVM _viewModel;
+
+    public ModifierUtilisateur(Utilisateur utilisateur, ProprietaireVM viewModel)
     {
-        public ModifierUtilisateur()
+        InitializeComponent();
+        _utilisateurId = utilisateur.id;
+        _viewModel = viewModel;
+
+        txtFirstName.Text = utilisateur.firstName;
+        txtLastName.Text = utilisateur.lastName;
+        txtEmail.Text = utilisateur.email;
+        txtRole.Text = utilisateur.role;
+        txtLogin.Text = utilisateur.username;
+    }
+
+    private void Enregistrer_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txtFirstName.Text) ||
+            string.IsNullOrWhiteSpace(txtLastName.Text) ||
+            string.IsNullOrWhiteSpace(txtEmail.Text) ||
+            string.IsNullOrWhiteSpace(txtRole.Text) ||
+            string.IsNullOrWhiteSpace(txtLogin.Text))
         {
-            InitializeComponent();
+            MessageBox.Show("Veuillez remplir tous les champs.");
+            return;
         }
+
+        using var db = new AppDbContext();
+        var utilisateur = db.Utilisateurs.Find(_utilisateurId);
+        if (utilisateur is null)
+        {
+            MessageBox.Show("Utilisateur introuvable.");
+            return;
+        }
+
+        utilisateur.firstName = txtFirstName.Text.Trim();
+        utilisateur.lastName = txtLastName.Text.Trim();
+        utilisateur.email = txtEmail.Text.Trim();
+        utilisateur.role = txtRole.Text.Trim();
+        utilisateur.username = txtLogin.Text.Trim();
+        db.SaveChanges();
+
+        _viewModel.ChargerUtilisateurs();
+        MessageBox.Show("Utilisateur modifié avec succès.");
+        Close();
     }
 }

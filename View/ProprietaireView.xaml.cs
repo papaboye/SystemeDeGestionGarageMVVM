@@ -1,86 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TravailPratique2.ViewModels;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class ProprietaireView : Window
 {
-    /// <summary>
-    /// Interaction logic for Connexion.xaml
-    /// </summary>
-    public partial class ProprietaireView : Window
+    public ProprietaireView()
     {
-        public ProprietaireView()
-        {
-            InitializeComponent();
-            DataContext = new ProprietaireVM();
-            
-        }
-        private void AjouterUtilisateur_Click(object sender, RoutedEventArgs e)
-        {
-           
-            var fenetre = new AjoutUtilisateur();
-            fenetre.ShowDialog();
-        }
-        private void ModifierUtilisateur_Click(object sender, RoutedEventArgs e)
-        {
+        InitializeComponent();
+        DataContext = new ProprietaireVM();
+    }
 
-            var fenetre = new ModifierUtilisateur();
-            fenetre.ShowDialog();
-        }
-        private void SupprimerUtilisateur_Click(object sender, RoutedEventArgs e)
-        {
+    private ProprietaireVM ViewModel => (ProprietaireVM)DataContext;
 
-            var fenetre = new SupprimerUtilisateur();
-            fenetre.ShowDialog();
-        }
-        private void AjouterVoiture_Click(object sender, RoutedEventArgs e)
-        {
-            var viewModel = DataContext as ProprietaireVM;
-            var fenetre = new AjoutVoiture(viewModel);
-            fenetre.ShowDialog();
-        }
-        private void ModifierVoiture_Click(object sender, RoutedEventArgs e)
-        {
+    private void AjouterUtilisateur_Click(object sender, RoutedEventArgs e)
+    {
+        new AjoutUtilisateur { Owner = this }.ShowDialog();
+        ViewModel.ChargerUtilisateurs();
+    }
 
-            var fenetre = new ModifierVoiture();
-            fenetre.ShowDialog();
-        }
-        private void SupprimerVoiture_Click(object sender, RoutedEventArgs e)
+    private void ModifierUtilisateur_Click(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.UtilisateurSelectionne is null)
         {
-            var viewModel = DataContext as ProprietaireVM;
-            var fenetre = new SupprimerVoiture(viewModel);
-            fenetre.ShowDialog();
+            MessageBox.Show("Sélectionnez un utilisateur à modifier.");
+            return;
         }
-        private void AjouterPiece_Click(object sender, RoutedEventArgs e)
-        {
 
-            var viewModel = DataContext as ProprietaireVM;
-            var fenetre = new Ajoutpiece(viewModel);
-            fenetre.ShowDialog();
-        }
-        private void ModifierPiece_Click(object sender, RoutedEventArgs e)
-        {
+        new ModifierUtilisateur(ViewModel.UtilisateurSelectionne, ViewModel) { Owner = this }.ShowDialog();
+    }
 
-            var fenetre = new ModifierPiece();
-            fenetre.ShowDialog();
-        }
-        private void SupprimerPiece_Click(object sender, RoutedEventArgs e)
+    private void SupprimerUtilisateur_Click(object sender, RoutedEventArgs e)
+    {
+        var utilisateur = ViewModel.UtilisateurSelectionne;
+        if (utilisateur is null)
         {
+            MessageBox.Show("Sélectionnez un utilisateur à supprimer.");
+            return;
+        }
 
-            var viewModel = DataContext as ProprietaireVM;
-            var fenetre = new SupprimerPiece(viewModel);
-            fenetre.ShowDialog();
+        var confirmation = MessageBox.Show(
+            $"Supprimer l'utilisateur {utilisateur.firstName} {utilisateur.lastName} ?",
+            "Confirmer la suppression",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (confirmation == MessageBoxResult.Yes)
+        {
+            ViewModel.SupprimerUtilisateur(utilisateur.id);
         }
     }
+
+    private void AjouterVoiture_Click(object sender, RoutedEventArgs e) =>
+        new AjoutVoiture(ViewModel) { Owner = this }.ShowDialog();
+
+    private void ModifierVoiture_Click(object sender, RoutedEventArgs e)
+    {
+        new ModifierVoiture { Owner = this }.ShowDialog();
+        ViewModel.ChargerVoitures();
+    }
+
+    private void SupprimerVoiture_Click(object sender, RoutedEventArgs e) =>
+        new SupprimerVoiture(ViewModel) { Owner = this }.ShowDialog();
+
+    private void AjouterPiece_Click(object sender, RoutedEventArgs e) =>
+        new Ajoutpiece(ViewModel) { Owner = this }.ShowDialog();
+
+    private void ModifierPiece_Click(object sender, RoutedEventArgs e)
+    {
+        new ModifierPiece { Owner = this }.ShowDialog();
+        ViewModel.ChargerPieces();
+    }
+
+    private void SupprimerPiece_Click(object sender, RoutedEventArgs e) =>
+        new SupprimerPiece(ViewModel) { Owner = this }.ShowDialog();
 }

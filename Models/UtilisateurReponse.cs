@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace TravailPratique2.Models;
 
-namespace TravailPratique2.Models
+internal sealed class UtilisateurReponse
 {
-    class UtilisateurReponse
-    {
-        public List<Utilisateur> users { get; set; }
-    }
+    public List<Utilisateur> users { get; set; } = [];
 }

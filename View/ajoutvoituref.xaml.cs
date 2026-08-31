@@ -1,63 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TravailPratique2.Models;
+using TravailPratique2.Services;
 using TravailPratique2.ViewModels;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class ajoutvoituref : Window
 {
-    /// <summary>
-    /// Interaction logic for ajoutvoituref.xaml
-    /// </summary>
-    public partial class ajoutvoituref : Window
+    private readonly FournisseurVM _viewModel;
+
+    public ajoutvoituref(FournisseurVM viewModel)
     {
-        private readonly FournisseurVM _fournisseurVM;
-        public ajoutvoituref(FournisseurVM vm)
+        InitializeComponent();
+        _viewModel = viewModel;
+    }
+
+    private void AjouterVoiture_Click(object sender, RoutedEventArgs e)
+    {
+        try
         {
-            InitializeComponent();
-            _fournisseurVM = vm;
-        }
-        private void AjouterVoiture_Click(object sender, RoutedEventArgs e)
-        {
-            var voiture = new Voiture
+            if (!InventoryService.TryAddVehicle(CreateInput(), out var voiture, out var message))
             {
-                marque = txtmarque.Text,
-                modele = txtmodele.Text,
-                annee = int.Parse(txtannee.Text),
-                categorie = txtcategorie.Text,
-                prixAproximatif = int.Parse(txtprix.Text),
-                typeCarburant = txttc.Text,
-                kilometrage = int.Parse(txtkilometrage.Text),
-                couleur = txtcouleur.Text,
-                transmission = txttransmission.Text,
-                vin = txtvin.Text,
-                proprietaireActuel = txtproprietaire.Text,
-                etatGeneral = txtetat.Text,
-                dateAchat = DateTime.Parse(txtdatea.Text),
-                derniereRevision = DateTime.Parse(txtdater.Text),
-                garantitRestant = txtgarantie.Text,
-                assurance = txtassurance.Text
-            };
-            using (var context = new AppDbContext())
-            {
-                context.Voitures.Add(voiture);
-                context.SaveChanges();
+                MessageBox.Show(message, "Données invalides", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-
-            _fournisseurVM.AjouterVoiture(voiture);
-
-            this.Close();
+            _viewModel.AjouterVoiture(voiture!);
+            MessageBox.Show("Voiture ajoutée avec succès.", "Ajout terminé");
+            DialogResult = true;
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(
+                $"Impossible d’ajouter la voiture : {exception.Message}",
+                "Erreur",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
     }
+
+    private VehicleInput CreateInput() => new(
+        txtmarque.Text,
+        txtmodele.Text,
+        txtannee.Text,
+        txtcategorie.Text,
+        txtprix.Text,
+        txtkilometrage.Text,
+        txtcouleur.Text,
+        txttc.Text,
+        txttransmission.Text,
+        txtetat.Text,
+        txtvin.Text,
+        txtproprietaire.Text,
+        txtdatea.Text,
+        txtdater.Text,
+        txtgarantie.Text,
+        txtassurance.Text);
 }

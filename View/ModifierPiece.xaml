@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="ModifierPiece" Height="450" Width="800">
+        Title="Modifier une pièce" Height="240" Width="600" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -22,7 +22,7 @@
         <Button Content="Rechercher" Grid.Row="0" Grid.Column="2" Margin="5" Width="120" Click="RechercherPiece_Click"/>
         <Label Grid.Row="1" Grid.Column="0" Content="Prix :" VerticalAlignment="Center"/>
         <TextBox x:Name="txtprix" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        <Button Content="Confirmer la modification" Grid.Row="9" Grid.ColumnSpan="4" Margin="10" Height="45" Width="250" HorizontalAlignment="Center" Click="ConfirmerModification_Click"/>
+        <Button Content="Confirmer la modification" Grid.Row="2" Grid.ColumnSpan="3" Margin="10" Height="45" Width="250" HorizontalAlignment="Center" Click="ConfirmerModification_Click"/>
 
     </Grid>
 </Window>
