@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="ajoutvoituref" Height="450" Width="800">
+        Title="Ajouter une voiture" Height="450" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -77,7 +77,7 @@
         <Label Grid.Row="0" Grid.Column="2" Content="Transmission :" VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="3" x:Name="txttransmission" Margin="5" />
 
-        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Ajouter la voiture" Click="AjouterVoiture_Click"
+        <Button Grid.Row="8" Grid.ColumnSpan="4" Content="Ajouter la voiture" Click="AjouterVoiture_Click"
         Height="40" Margin="5" HorizontalAlignment="Center" Width="200" />
     </Grid>
 </Window>

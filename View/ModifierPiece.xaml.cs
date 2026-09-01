@@ -1,73 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TravailPratique2.Models;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class ModifierPiece : Window
 {
-    /// <summary>
-    /// Interaction logic for ModifierPiece.xaml
-    /// </summary>
-    public partial class ModifierPiece : Window
+    private int? _pieceId;
+
+    public ModifierPiece()
     {
-        public ModifierPiece()
+        InitializeComponent();
+    }
+
+    private void RechercherPiece_Click(object sender, RoutedEventArgs e)
+    {
+        var nom = txtpiece.Text.Trim();
+        if (string.IsNullOrWhiteSpace(nom))
         {
-            InitializeComponent();
+            MessageBox.Show("Saisissez le nom de la pièce à modifier.");
+            return;
         }
-        private void RechercherPiece_Click(object sender, RoutedEventArgs e)
+
+        using var db = new AppDbContext();
+        var piece = db.Pieces.FirstOrDefault(item => item.nom_de_piece == nom);
+        if (piece is null)
         {
-            string nom = txtpiece.Text;
-
-            using (var db = new AppDbContext())
-            {
-                var piece = db.Pieces.FirstOrDefault(p => p.nom_de_piece == nom);
-                if (piece != null)
-                {
-
-                    txtpiece.Text = piece.nom_de_piece;
-                    
-                    txtprix.Text = piece.prix_approx.ToString();
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Piece introuvable.");
-                }
-            }
+            _pieceId = null;
+            MessageBox.Show("Pièce introuvable.");
+            return;
         }
-        private void ConfirmerModification_Click(object sender, RoutedEventArgs e)
+
+        _pieceId = piece.id;
+        txtpiece.Text = piece.nom_de_piece;
+        txtprix.Text = piece.prix_approx.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void ConfirmerModification_Click(object sender, RoutedEventArgs e)
+    {
+        if (_pieceId is null)
         {
-            string nom = txtpiece.Text;
+            MessageBox.Show("Recherchez d’abord une pièce à modifier.");
+            return;
+        }
 
-            using (var db = new AppDbContext())
+        var nom = txtpiece.Text.Trim();
+        if (string.IsNullOrWhiteSpace(nom) ||
+            !double.TryParse(txtprix.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out var prix) ||
+            prix < 0)
+        {
+            MessageBox.Show("Saisissez un nom et un prix positif valides.");
+            return;
+        }
+
+        try
+        {
+            using var db = new AppDbContext();
+            var piece = db.Pieces.Find(_pieceId.Value);
+            if (piece is null)
             {
-                var piece = db.Pieces.FirstOrDefault(v => v.nom_de_piece == nom);
-                if (piece != null)
-                {
-
-                   piece.nom_de_piece = txtpiece.Text;
-                    piece.prix_approx = int.Parse(txtprix.Text);
-                   
-
-                    db.SaveChanges();
-                    MessageBox.Show("Piece modifiée avec succès.");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Piece non trouvée pour mise à jour.");
-                }
+                MessageBox.Show("La pièce n’existe plus dans la base de données.");
+                return;
             }
+
+            if (db.Pieces.Any(item => item.id != piece.id && item.nom_de_piece == nom))
+            {
+                MessageBox.Show("Une autre pièce porte déjà ce nom.");
+                return;
+            }
+
+            piece.nom_de_piece = nom;
+            piece.prix_approx = prix;
+            db.SaveChanges();
+            MessageBox.Show("Pièce modifiée avec succès.");
+            DialogResult = true;
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"Impossible de modifier la pièce : {exception.Message}");
         }
     }
 }

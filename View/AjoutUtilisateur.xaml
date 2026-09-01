@@ -1,15 +1,17 @@
-﻿<Window x:Class="TravailPratique2.View.AjoutUtilisateur"
+<Window x:Class="TravailPratique2.View.AjoutUtilisateur"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TravailPratique2.View"
-        mc:Ignorable="d"
-        Title="AjoutUtilisateur" Height="450" Width="800">
-    <Grid Margin="10">
+        Title="Ajouter un utilisateur"
+        Height="500"
+        Width="520"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="24">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -20,38 +22,40 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <TextBlock Text="Prénom" Grid.Row="0" Margin="0,8"/>
+        <TextBox x:Name="txtFirstName" Grid.Row="0" Grid.Column="1" Margin="0,5"/>
 
-        <!-- ID -->
-        <TextBlock Text="ID :" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtId" Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Nom" Grid.Row="1" Margin="0,8"/>
+        <TextBox x:Name="txtLastName" Grid.Row="1" Grid.Column="1" Margin="0,5"/>
 
-        
-        <TextBlock Text="Prénom :" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtFirstName" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Courriel" Grid.Row="2" Margin="0,8"/>
+        <TextBox x:Name="txtEmail" Grid.Row="2" Grid.Column="1" Margin="0,5"/>
 
-       
-        <TextBlock Text="Nom :" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtLastName" Grid.Row="2" Grid.Column="1" Margin="5"/>
-       
-        <TextBlock Text="Email :" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtemail" Grid.Row="3" Grid.Column="1" Margin="5"/>
-      
-        <TextBlock Text="Rôle :" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtRole" Grid.Row="4" Grid.Column="1" Margin="5"/>
-        
-        <TextBlock Text="Login :" Grid.Row="5" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtlogin" Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Rôle" Grid.Row="3" Margin="0,8"/>
+        <ComboBox x:Name="cmbRole" Grid.Row="3" Grid.Column="1" Margin="0,5" SelectedIndex="2">
+            <ComboBoxItem Content="Proprietaire"/>
+            <ComboBoxItem Content="Fournisseur"/>
+            <ComboBoxItem Content="Client"/>
+        </ComboBox>
 
-        <TextBlock Text="Password :" Grid.Row="6" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtpwd" Grid.Row="6" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Nom d'utilisateur" Grid.Row="4" Margin="0,8"/>
+        <TextBox x:Name="txtLogin" Grid.Row="4" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Text="Mot de passe" Grid.Row="5" Margin="0,8"/>
+        <PasswordBox x:Name="txtPassword" Grid.Row="5" Grid.Column="1" Margin="0,5"/>
+
+        <TextBlock Grid.Row="6"
+                   Grid.ColumnSpan="2"
+                   Margin="0,12"
+                   Foreground="#6B7280"
+                   TextWrapping="Wrap"
+                   Text="Ces comptes locaux servent à la démonstration et à la gestion interne de l'application."/>
+
         <Button Content="Ajouter l'utilisateur"
-                Grid.Row="7" Grid.ColumnSpan="2"
-                Height="40" Margin="5"
-                HorizontalAlignment="Center"
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Height="40"
+                Margin="0,12,0,0"
                 Click="Ajouter_Click"/>
     </Grid>
 </Window>

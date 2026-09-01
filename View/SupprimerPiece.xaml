@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="SupprimerPiece" Height="450" Width="800">
+        Title="Supprimer une pièce" Height="330" Width="600" WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

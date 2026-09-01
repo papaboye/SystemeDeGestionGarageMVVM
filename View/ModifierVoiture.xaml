@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="ModifierVoiture" Height="450" Width="800">
+        Title="Modifier une voiture" Height="500" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

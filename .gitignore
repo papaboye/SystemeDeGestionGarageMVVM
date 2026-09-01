@@ -1,0 +1,26 @@
+# Visual Studio and build outputs
+.vs/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build, test and diagnostic artifacts
+TestResults/
+*.pdb
+*.cache
+*.log
+*.tmp
+
+# Local databases and IDE settings
+*.mdf
+*.ldf
+.idea/

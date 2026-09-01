@@ -11,7 +11,7 @@ namespace TravailPratique2.Models
     {
         [Key]
         public int id { get; set; }
-        public string nom_de_piece { get; set; }
+        public string nom_de_piece { get; set; } = string.Empty;
         public double prix_approx { get; set; }
     }
 }

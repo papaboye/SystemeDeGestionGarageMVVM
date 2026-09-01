@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="DevisView" Height="450" Width="800">
+        Title="Validation du devis" Height="360" Width="560"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <StackPanel>
             <TextBlock Text="Détails du devis" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
-            <TextBlock Text="{Binding Description}" Margin="0,5"/>
+            <TextBlock Text="{Binding description}" Margin="0,5" TextWrapping="Wrap"/>
             <TextBlock Text="Total estimé :" />
             <TextBlock Text="{Binding Total}" FontWeight="Bold" FontSize="14" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">

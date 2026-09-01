@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="ajoutpiecef" Height="450" Width="800">
+        Title="Ajouter une pièce" Height="220" Width="520" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
 
         <Label Grid.Row="1" Grid.Column="0" Content="Prix Piece :" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtpp" Margin="5" />
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Ajouter la Piece" Click="AjouterPiece_Click"
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Ajouter la pièce" Click="AjouterPiece_Click"
 Height="40" Margin="5" HorizontalAlignment="Center" Width="200" />
     </Grid>
 </Window>

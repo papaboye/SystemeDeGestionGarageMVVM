@@ -1,51 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TravailPratique2.Models;
+using TravailPratique2.Services;
 using TravailPratique2.ViewModels;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class Ajoutpiece : Window
 {
-    /// <summary>
-    /// Interaction logic for Ajoutpiece.xaml
-    /// </summary>
-    public partial class Ajoutpiece : Window
+    private readonly ProprietaireVM _viewModel;
+
+    public Ajoutpiece(ProprietaireVM viewModel)
     {
-        private readonly ProprietaireVM _proprietaireVM;
-        public Ajoutpiece(ProprietaireVM vm)
+        InitializeComponent();
+        _viewModel = viewModel;
+    }
+
+    private void AjouterPiece_Click(object sender, RoutedEventArgs e)
+    {
+        try
         {
-            InitializeComponent();
-            _proprietaireVM = vm;
-        }
-        private void AjouterPiece_Click(object sender, RoutedEventArgs e)
-        {
-            var piece = new Piece
+            if (!InventoryService.TryAddPiece(txtnp.Text, txtpp.Text, out var piece, out var message))
             {
-                nom_de_piece = txtnp.Text,
-                
-                prix_approx = int.Parse(txtpp.Text),
-            };
-            using (var context = new AppDbContext())
-            {
-                context.Pieces.Add(piece);
-                context.SaveChanges();
+                MessageBox.Show(message, "Données invalides", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
-
-            _proprietaireVM.AjouterPiece(piece);
-
-            this.Close();
+            _viewModel.AjouterPiece(piece!);
+            MessageBox.Show("Pièce ajoutée avec succès.", "Ajout terminé");
+            DialogResult = true;
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(
+                $"Impossible d’ajouter la pièce : {exception.Message}",
+                "Erreur",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
     }
-    
 }

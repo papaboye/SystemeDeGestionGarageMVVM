@@ -11,10 +11,10 @@ namespace TravailPratique2.Models
     {
         [Key]
         public int id { get; set; }
-        public string categorie { get; set; }
-        public string type { get; set; }
-        public string description { get; set; }
-        public string reparation_associee { get; set; }
+        public string categorie { get; set; } = string.Empty;
+        public string type { get; set; } = string.Empty;
+        public string description { get; set; } = string.Empty;
+        public string reparation_associee { get; set; } = string.Empty;
         public double cout { get; set; }
         public List<Piece> piece = new List<Piece>();
         public List<Voiture> voiture = new List<Voiture>();

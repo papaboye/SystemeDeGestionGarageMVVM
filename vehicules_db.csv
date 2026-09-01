@@ -1,64 +1,16 @@
 marque,modele,annee,categorie,prixAproximatif,kilometrage,couleur,typeCarburant,transmission,etatGeneral,vin,proprietaireActuel,dateAchat,derniereRevision,garantitRestant,assurance
-Honda,Civic,2020,Compact,22000,30000,Blanc,Essence,Manuelle,Bon,2HGFC2F53LH123456,Alice Martin,08/01/2020 00:00:00,11/15/2021 00:00:00,6 mois,Expirée
-Ford,Focus,2019,Compact,19000,45000,Gris,Essence,Automatique,Moyen,1FAHP3F26DL123456,Bob Leroux,03/22/2019 00:00:00,06/20/2021 00:00:00,9 mois,En cours
-Chevrolet,Malibu,2021,Sedan,25000,20000,Argent,Essence,Automatique,Bien,1G1ZC5ST8MF123456,Charles Robert,07/30/2021 00:00:00,02/25/2022 00:00:00,15 mois,En cours
-Nissan,Altima,2022,Sedan,27000,15000,Noir,Essence,Automatique,Bon,1N4BL4CV3NN123456,Sophie Leclerc,01/12/2022 00:00:00,03/01/2022 00:00:00,24 mois,En cours
-BMW,320i,2020,Sedan,35000,30000,Bleu,Essence,Automatique,Bon,WBA5R1C54BL123456,Michel Dufresne,04/15/2020 00:00:00,09/10/2021 00:00:00,12 mois,En cours
-Mercedes-Benz,C-Class,2021,Sedan,42000,25000,Blanc,Essence,Automatique,Bien,55SWF4KB1JU123456,Claire Boucher,06/03/2021 00:00:00,05/01/2022 00:00:00,18 mois,En cours
-Audi,A4,2022,Sedan,45000,12000,Gris,Essence,Automatique,Excellent,WAUGMAF47NA123456,Paul Girard,02/20/2022 00:00:00,04/10/2022 00:00:00,24 mois,En cours
-Volkswagen,Jetta,2021,Sedan,23000,22000,Noir,Essence,Manuelle,Bien,3VWB67AJ7KM123456,Lucie Moreau,09/25/2021 00:00:00,01/15/2022 00:00:00,14 mois,En cours
-Hyundai,Elantra,2021,Compact,21000,21000,Blanc,Essence,Automatique,Bien,5NPD84LF2MH123456,Marc Lefevre,11/10/2021 00:00:00,02/15/2022 00:00:00,16 mois,En cours
-Kia,Soul,2022,Compact,22000,15000,Vert,Essence,Automatique,Bon,KNDJP3A53N7D123456,Nathalie Bernard,01/05/2022 00:00:00,03/22/2022 00:00:00,22 mois,En cours
-Mazda,3,2020,Compact,24000,35000,Bleu,Essence,Manuelle,Moyen,JM1BN1V76L123456,Yves Dupuis,07/14/2020 00:00:00,10/20/2021 00:00:00,6 mois,Expirée
-Subaru,Impreza,2021,Compact,25000,24000,Gris,Essence,Automatique,Bien,JF1BNAA63MZ123456,François Giroux,04/10/2021 00:00:00,02/01/2022 00:00:00,18 mois,En cours
-Tesla,Model 3,2022,Sedan,45000,10000,Blanc,Électrique,Automatique,Excellent,5YJ3E1EA7MF123456,Emma Perrin,03/10/2022 00:00:00,05/05/2022 00:00:00,24 mois,En cours
-Chevrolet,Traverse,2021,SUV,40000,27000,Argent,Essence,Automatique,Bon,1GNKRFKD4MJ123456,Julien Tremblay,08/30/2021 00:00:00,03/12/2022 00:00:00,19 mois,En cours
-Ford,Escape,2020,SUV,35000,32000,Noir,Essence,Automatique,Bien,1FMCU9G92LUB123456,Isabelle Lefevre,06/01/2020 00:00:00,11/18/2021 00:00:00,7 mois,Expirée
-Toyota,RAV4,2021,SUV,37000,21000,Blanc,Essence,Automatique,Bon,2T3W1RFV2JW123456,Jean-Pierre Lemoine,07/21/2021 00:00:00,03/01/2022 00:00:00,17 mois,En cours
-Honda,CR-V,2022,SUV,38000,18000,Bleu,Essence,Automatique,Bon,7FARW2H55NE123456,Sarah Duchamp,02/15/2022 00:00:00,04/01/2022 00:00:00,24 mois,En cours
-Jeep,Grand Cherokee,2021,SUV,45000,23000,Gris,Essence,Automatique,Bien,1C4RJFBG2MC123456,Michel Renaud,09/12/2021 00:00:00,03/20/2022 00:00:00,16 mois,En cours
-BMW,X5,2020,SUV,55000,35000,Noir,Essence,Automatique,Bon,5UXCR6C59L123456,François Rousseau,05/14/2020 00:00:00,07/10/2021 00:00:00,10 mois,En cours
-Mercedes-Benz,GLC,2022,SUV,60000,10000,Blanc,Essence,Automatique,Excellent,4JGDA5GB7NA123456,Sophie Martin,01/25/2022 00:00:00,03/30/2022 00:00:00,24 mois,En cours
-Audi,Q5,2020,SUV,50000,40000,Bleu,Diesel,Automatique,Moyen,WA1BNAF70L123456,Paul Lefevre,07/30/2020 00:00:00,06/15/2021 00:00:00,11 mois,En cours
-Land Rover,Discovery,2021,SUV,65000,18000,Argent,Essence,Automatique,Excellent,SALRG2FV2HA123456,Caroline Leroy,05/10/2021 00:00:00,02/28/2022 00:00:00,23 mois,En cours
-Porsche,Cayenne,2020,SUV,75000,25000,Noir,Essence,Automatique,Bon,WPOZZZ9Y9LL123456,Marc Lemoine,04/25/2020 00:00:00,10/10/2021 00:00:00,13 mois,En cours
-Ford,F-150,2022,Pick-up,40000,15000,Blanc,Essence,Automatique,Bon,1FTEW1E56NFB123456,Yves Lefevre,02/10/2022 00:00:00,04/12/2022 00:00:00,22 mois,En cours
-Chevrolet,Silverado 1500,2021,Pick-up,43000,22000,Argent,Essence,Automatique,Bon,3GCUKREC9MG123456,Jean Pierre Bernard,11/10/2021 00:00:00,02/20/2022 00:00:00,20 mois,En cours
-Ram,1500,2020,Pick-up,45000,40000,Noir,Essence,Automatique,Moyen,1C6RR7FT9LN123456,Robert Gauthier,08/15/2020 00:00:00,12/05/2021 00:00:00,8 mois,En cours
-GMC,Canyon,2021,Pick-up,42000,23000,Bleu,Essence,Automatique,Bon,1GTG6CEJ1M123456,Martine Lefevre,07/15/2021 00:00:00,03/10/2022 00:00:00,19 mois,En cours
-Toyota,Tundra,2020,Pick-up,47000,28000,Gris,Essence,Automatique,Bon,5TFDY5F17LX123456,Michel Dupont,09/20/2020 00:00:00,11/12/2021 00:00:00,7 mois,Expirée
-Nissan,Titan,2021,Pick-up,49000,20000,Blanc,Essence,Automatique,Bon,1N6AA1CC7MN123456,Claudine Moreau,10/10/2021 00:00:00,03/15/2022 00:00:00,21 mois,En cours
-Dodge,Ram 2500,2022,Pick-up,60000,15000,Noir,Essence,Automatique,Excellent,3C6UR5HL6NG123456,David Leroy,02/18/2022 00:00:00,04/20/2022 00:00:00,24 mois,En cours
-totota,benz,2029,camion,120,130,rouge,essence,automatique,bien,GHJKLPOI1234456,Mass,11/10/2019 00:00:00,03/12/2022 00:00:00,6,termine
-Honda,Civic,2020,Compact,22000,30000,Blanc,Essence,Manuelle,Bon,2HGFC2F53LH123456,Alice Martin,08/01/2020 00:00:00,11/15/2021 00:00:00,6 mois,Expirée
-Ford,Focus,2019,Compact,19000,45000,Gris,Essence,Automatique,Moyen,1FAHP3F26DL123456,Bob Leroux,03/22/2019 00:00:00,06/20/2021 00:00:00,9 mois,En cours
-Chevrolet,Malibu,2021,Sedan,25000,20000,Argent,Essence,Automatique,Bien,1G1ZC5ST8MF123456,Charles Robert,07/30/2021 00:00:00,02/25/2022 00:00:00,15 mois,En cours
-Nissan,Altima,2022,Sedan,27000,15000,Noir,Essence,Automatique,Bon,1N4BL4CV3NN123456,Sophie Leclerc,01/12/2022 00:00:00,03/01/2022 00:00:00,24 mois,En cours
-BMW,320i,2020,Sedan,35000,30000,Bleu,Essence,Automatique,Bon,WBA5R1C54BL123456,Michel Dufresne,04/15/2020 00:00:00,09/10/2021 00:00:00,12 mois,En cours
-Mercedes-Benz,C-Class,2021,Sedan,42000,25000,Blanc,Essence,Automatique,Bien,55SWF4KB1JU123456,Claire Boucher,06/03/2021 00:00:00,05/01/2022 00:00:00,18 mois,En cours
-Audi,A4,2022,Sedan,45000,12000,Gris,Essence,Automatique,Excellent,WAUGMAF47NA123456,Paul Girard,02/20/2022 00:00:00,04/10/2022 00:00:00,24 mois,En cours
-Volkswagen,Jetta,2021,Sedan,23000,22000,Noir,Essence,Manuelle,Bien,3VWB67AJ7KM123456,Lucie Moreau,09/25/2021 00:00:00,01/15/2022 00:00:00,14 mois,En cours
-Hyundai,Elantra,2021,Compact,21000,21000,Blanc,Essence,Automatique,Bien,5NPD84LF2MH123456,Marc Lefevre,11/10/2021 00:00:00,02/15/2022 00:00:00,16 mois,En cours
-Kia,Soul,2022,Compact,22000,15000,Vert,Essence,Automatique,Bon,KNDJP3A53N7D123456,Nathalie Bernard,01/05/2022 00:00:00,03/22/2022 00:00:00,22 mois,En cours
-Mazda,3,2020,Compact,24000,35000,Bleu,Essence,Manuelle,Moyen,JM1BN1V76L123456,Yves Dupuis,07/14/2020 00:00:00,10/20/2021 00:00:00,6 mois,Expirée
-Subaru,Impreza,2021,Compact,25000,24000,Gris,Essence,Automatique,Bien,JF1BNAA63MZ123456,François Giroux,04/10/2021 00:00:00,02/01/2022 00:00:00,18 mois,En cours
-Tesla,Model 3,2022,Sedan,45000,10000,Blanc,Électrique,Automatique,Excellent,5YJ3E1EA7MF123456,Emma Perrin,03/10/2022 00:00:00,05/05/2022 00:00:00,24 mois,En cours
-Chevrolet,Traverse,2021,SUV,40000,27000,Argent,Essence,Automatique,Bon,1GNKRFKD4MJ123456,Julien Tremblay,08/30/2021 00:00:00,03/12/2022 00:00:00,19 mois,En cours
-Ford,Escape,2020,SUV,35000,32000,Noir,Essence,Automatique,Bien,1FMCU9G92LUB123456,Isabelle Lefevre,06/01/2020 00:00:00,11/18/2021 00:00:00,7 mois,Expirée
-Toyota,RAV4,2021,SUV,37000,21000,Blanc,Essence,Automatique,Bon,2T3W1RFV2JW123456,Jean-Pierre Lemoine,07/21/2021 00:00:00,03/01/2022 00:00:00,17 mois,En cours
-Honda,CR-V,2022,SUV,38000,18000,Bleu,Essence,Automatique,Bon,7FARW2H55NE123456,Sarah Duchamp,02/15/2022 00:00:00,04/01/2022 00:00:00,24 mois,En cours
-Jeep,Grand Cherokee,2021,SUV,45000,23000,Gris,Essence,Automatique,Bien,1C4RJFBG2MC123456,Michel Renaud,09/12/2021 00:00:00,03/20/2022 00:00:00,16 mois,En cours
-BMW,X5,2020,SUV,55000,35000,Noir,Essence,Automatique,Bon,5UXCR6C59L123456,François Rousseau,05/14/2020 00:00:00,07/10/2021 00:00:00,10 mois,En cours
-Mercedes-Benz,GLC,2022,SUV,60000,10000,Blanc,Essence,Automatique,Excellent,4JGDA5GB7NA123456,Sophie Martin,01/25/2022 00:00:00,03/30/2022 00:00:00,24 mois,En cours
-Audi,Q5,2020,SUV,50000,40000,Bleu,Diesel,Automatique,Moyen,WA1BNAF70L123456,Paul Lefevre,07/30/2020 00:00:00,06/15/2021 00:00:00,11 mois,En cours
-Land Rover,Discovery,2021,SUV,65000,18000,Argent,Essence,Automatique,Excellent,SALRG2FV2HA123456,Caroline Leroy,05/10/2021 00:00:00,02/28/2022 00:00:00,23 mois,En cours
-Porsche,Cayenne,2020,SUV,75000,25000,Noir,Essence,Automatique,Bon,WPOZZZ9Y9LL123456,Marc Lemoine,04/25/2020 00:00:00,10/10/2021 00:00:00,13 mois,En cours
-Ford,F-150,2022,Pick-up,40000,15000,Blanc,Essence,Automatique,Bon,1FTEW1E56NFB123456,Yves Lefevre,02/10/2022 00:00:00,04/12/2022 00:00:00,22 mois,En cours
-Chevrolet,Silverado 1500,2021,Pick-up,43000,22000,Argent,Essence,Automatique,Bon,3GCUKREC9MG123456,Jean Pierre Bernard,11/10/2021 00:00:00,02/20/2022 00:00:00,20 mois,En cours
-Ram,1500,2020,Pick-up,45000,40000,Noir,Essence,Automatique,Moyen,1C6RR7FT9LN123456,Robert Gauthier,08/15/2020 00:00:00,12/05/2021 00:00:00,8 mois,En cours
-GMC,Canyon,2021,Pick-up,42000,23000,Bleu,Essence,Automatique,Bon,1GTG6CEJ1M123456,Martine Lefevre,07/15/2021 00:00:00,03/10/2022 00:00:00,19 mois,En cours
-Toyota,Tundra,2020,Pick-up,47000,28000,Gris,Essence,Automatique,Bon,5TFDY5F17LX123456,Michel Dupont,09/20/2020 00:00:00,11/12/2021 00:00:00,7 mois,Expirée
-Nissan,Titan,2021,Pick-up,49000,20000,Blanc,Essence,Automatique,Bon,1N6AA1CC7MN123456,Claudine Moreau,10/10/2021 00:00:00,03/15/2022 00:00:00,21 mois,En cours
-Dodge,Ram 2500,2022,Pick-up,60000,15000,Noir,Essence,Automatique,Excellent,3C6UR5HL6NG123456,David Leroy,02/18/2022 00:00:00,04/20/2022 00:00:00,24 mois,En cours
-totota,benz,2029,camion,120,130,rouge,essence,automatique,bien,GHJKLPOI1234456,Mass,01/09/2019 00:00:00,01/02/2025 00:00:00,6,termine
-toyota,benz,2026,camion,1234,12,jaune,essence,automatique,tres bon,QWERTY12345,Papa,01/01/2025 00:00:00,03/01/2025 00:00:00,4 mois,en cours
+Honda,Civic,2020,Compacte,22000,30000,Blanc,Essence,Manuelle,Bon,DEMO0000000000001,Client Démo 01,2020-08-01,2024-06-15,6 mois,En cours
+Ford,Focus,2019,Compacte,19000,45000,Gris,Essence,Automatique,Moyen,DEMO0000000000002,Client Démo 02,2019-03-22,2024-04-20,3 mois,En cours
+Chevrolet,Malibu,2021,Berline,25000,20000,Argent,Essence,Automatique,Bon,DEMO0000000000003,Client Démo 03,2021-07-30,2024-08-25,12 mois,En cours
+Nissan,Altima,2022,Berline,27000,15000,Noir,Essence,Automatique,Très bon,DEMO0000000000004,Client Démo 04,2022-01-12,2025-01-10,18 mois,En cours
+BMW,320i,2020,Berline,35000,30000,Bleu,Essence,Automatique,Bon,DEMO0000000000005,Client Démo 05,2020-04-15,2024-09-10,6 mois,En cours
+Mercedes-Benz,C-Class,2021,Berline,42000,25000,Blanc,Essence,Automatique,Très bon,DEMO0000000000006,Client Démo 06,2021-06-03,2025-02-01,12 mois,En cours
+Audi,A4,2022,Berline,45000,12000,Gris,Essence,Automatique,Excellent,DEMO0000000000007,Client Démo 07,2022-02-20,2025-04-10,18 mois,En cours
+Volkswagen,Jetta,2021,Berline,23000,22000,Noir,Essence,Manuelle,Bon,DEMO0000000000008,Client Démo 08,2021-09-25,2024-11-15,8 mois,En cours
+Hyundai,Elantra,2021,Compacte,21000,21000,Blanc,Essence,Automatique,Bon,DEMO0000000000009,Client Démo 09,2021-11-10,2025-02-15,10 mois,En cours
+Kia,Soul,2022,Compacte,22000,15000,Vert,Essence,Automatique,Bon,DEMO0000000000010,Client Démo 10,2022-01-05,2025-03-22,14 mois,En cours
+Mazda,3,2020,Compacte,24000,35000,Bleu,Essence,Manuelle,Moyen,DEMO0000000000011,Client Démo 11,2020-07-14,2024-10-20,Expirée,Expirée
+Subaru,Impreza,2021,Compacte,25000,24000,Gris,Essence,Automatique,Bon,DEMO0000000000012,Client Démo 12,2021-04-10,2025-02-01,12 mois,En cours
+Tesla,Model 3,2022,Berline,45000,10000,Blanc,Électrique,Automatique,Excellent,DEMO0000000000013,Client Démo 13,2022-03-10,2025-05-05,18 mois,En cours
+Toyota,RAV4,2021,VUS,37000,21000,Blanc,Hybride,Automatique,Bon,DEMO0000000000014,Client Démo 14,2021-07-21,2025-03-01,12 mois,En cours
+Ford,F-150,2022,Camionnette,40000,15000,Blanc,Essence,Automatique,Bon,DEMO0000000000015,Client Démo 15,2022-02-10,2025-04-12,18 mois,En cours

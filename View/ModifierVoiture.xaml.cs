@@ -1,106 +1,114 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using TravailPratique2.Models;
 
-namespace TravailPratique2.View
+namespace TravailPratique2.View;
+
+public partial class ModifierVoiture : Window
 {
-    /// <summary>
-    /// Interaction logic for ModifierVoiture.xaml
-    /// </summary>
-    public partial class ModifierVoiture : Window
+    private string? _vinRecherche;
+
+    public ModifierVoiture()
     {
-        private DbContextOptionsBuilder _context;
-        private Voiture voitureActuelle;
-        public ModifierVoiture()
+        InitializeComponent();
+    }
+
+    private void RechercherVoiture_Click(object sender, RoutedEventArgs e)
+    {
+        var vin = txtvin.Text.Trim().ToUpperInvariant();
+        if (string.IsNullOrWhiteSpace(vin))
         {
-            InitializeComponent();
-
-            _context = new DbContextOptionsBuilder();
-
-        }
-        private void RechercherVoiture_Click(object sender, RoutedEventArgs e)
-        {
-            string vin = txtvin.Text;
-
-            using (var db = new AppDbContext())
-            {
-                var voiture = db.Voitures.FirstOrDefault(v => v.vin == vin);
-                if (voiture != null)
-                {
-                    
-                    txtmarque.Text = voiture.marque;
-                    txtmodele.Text = voiture.modele;
-                    txtannee.Text = voiture.annee.ToString();
-                    txtcategorie.Text = voiture.categorie;
-                    txtprix.Text = voiture.prixAproximatif.ToString();
-                    txttc.Text = voiture.typeCarburant;
-                    txtkilometrage.Text = voiture.kilometrage.ToString();
-                    txtcouleur.Text = voiture.couleur;
-                    txttransmission.Text = voiture.transmission;
-                    txtproprietaire.Text = voiture.proprietaireActuel;
-                    txtetat.Text = voiture.etatGeneral;
-                    txtdatea.Text = voiture.dateAchat.ToString("yyyy-MM-dd");
-                    txtdater.Text = voiture.derniereRevision.ToString("yyyy-MM-dd");
-                    txtgarantie.Text = voiture.garantitRestant;
-                    txtassurance.Text = voiture.assurance;
-                }
-                else
-                {
-                    MessageBox.Show("Voiture introuvable.");
-                }
-            }
+            MessageBox.Show("Saisissez le VIN de la voiture à modifier.");
+            return;
         }
 
-        private void ConfirmerModification_Click(object sender, RoutedEventArgs e)
+        using var db = new AppDbContext();
+        var voiture = db.Voitures.FirstOrDefault(item => item.vin == vin);
+        if (voiture is null)
         {
-            string vin = txtvin.Text;
+            _vinRecherche = null;
+            MessageBox.Show("Voiture introuvable.");
+            return;
+        }
 
-            using (var db = new AppDbContext())
+        _vinRecherche = voiture.vin;
+        txtvin.Text = voiture.vin;
+        txtvin.IsReadOnly = true;
+        txtmarque.Text = voiture.marque;
+        txtmodele.Text = voiture.modele;
+        txtannee.Text = voiture.annee.ToString(CultureInfo.CurrentCulture);
+        txtcategorie.Text = voiture.categorie;
+        txtprix.Text = voiture.prixAproximatif.ToString(CultureInfo.CurrentCulture);
+        txttc.Text = voiture.typeCarburant;
+        txtkilometrage.Text = voiture.kilometrage.ToString(CultureInfo.CurrentCulture);
+        txtcouleur.Text = voiture.couleur;
+        txttransmission.Text = voiture.transmission;
+        txtproprietaire.Text = voiture.proprietaireActuel;
+        txtetat.Text = voiture.etatGeneral;
+        txtdatea.Text = voiture.dateAchat.ToShortDateString();
+        txtdater.Text = voiture.derniereRevision.ToShortDateString();
+        txtgarantie.Text = voiture.garantitRestant;
+        txtassurance.Text = voiture.assurance;
+    }
+
+    private void ConfirmerModification_Click(object sender, RoutedEventArgs e)
+    {
+        if (_vinRecherche is null)
+        {
+            MessageBox.Show("Recherchez d’abord une voiture à modifier.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(txtmarque.Text) || string.IsNullOrWhiteSpace(txtmodele.Text))
+        {
+            MessageBox.Show("La marque et le modèle sont obligatoires.");
+            return;
+        }
+
+        if (!int.TryParse(txtannee.Text, NumberStyles.Integer, CultureInfo.CurrentCulture, out var annee) ||
+            annee < 1886 || annee > DateTime.Today.Year + 1 ||
+            !int.TryParse(txtprix.Text, NumberStyles.Integer, CultureInfo.CurrentCulture, out var prix) || prix < 0 ||
+            !double.TryParse(txtkilometrage.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out var kilometrage) || kilometrage < 0 ||
+            !DateTime.TryParse(txtdatea.Text, CultureInfo.CurrentCulture, DateTimeStyles.None, out var dateAchat) ||
+            !DateTime.TryParse(txtdater.Text, CultureInfo.CurrentCulture, DateTimeStyles.None, out var derniereRevision))
+        {
+            MessageBox.Show("Vérifiez l’année, le prix, le kilométrage et les deux dates.");
+            return;
+        }
+
+        try
+        {
+            using var db = new AppDbContext();
+            var voiture = db.Voitures.FirstOrDefault(item => item.vin == _vinRecherche);
+            if (voiture is null)
             {
-                var voiture = db.Voitures.FirstOrDefault(v => v.vin == vin);
-                if (voiture != null)
-                {
-                    
-                    voiture.marque = txtmarque.Text;
-                    voiture.modele = txtmodele.Text;
-                    voiture.annee = int.Parse(txtannee.Text);
-                    voiture.categorie = txtcategorie.Text;
-                    voiture.prixAproximatif = int.Parse(txtprix.Text);
-                    voiture.typeCarburant = txttc.Text;
-                    voiture.kilometrage = int.Parse(txtkilometrage.Text);
-                    voiture.couleur = txtcouleur.Text;
-                    voiture.transmission = txttransmission.Text;
-                    voiture.proprietaireActuel = txtproprietaire.Text;
-                    voiture.etatGeneral = txtetat.Text;
-                    voiture.dateAchat = DateTime.Parse(txtdatea.Text);
-                    voiture.derniereRevision = DateTime.Parse(txtdater.Text);
-                    voiture.garantitRestant = txtgarantie.Text;
-                    voiture.assurance = txtassurance.Text;
-
-                    db.SaveChanges();
-                    MessageBox.Show("Voiture modifiée avec succès.");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Voiture non trouvée pour mise à jour.");
-                }
+                MessageBox.Show("La voiture n’existe plus dans la base de données.");
+                return;
             }
+
+            voiture.marque = txtmarque.Text.Trim();
+            voiture.modele = txtmodele.Text.Trim();
+            voiture.annee = annee;
+            voiture.categorie = txtcategorie.Text.Trim();
+            voiture.prixAproximatif = prix;
+            voiture.typeCarburant = txttc.Text.Trim();
+            voiture.kilometrage = kilometrage;
+            voiture.couleur = txtcouleur.Text.Trim();
+            voiture.transmission = txttransmission.Text.Trim();
+            voiture.proprietaireActuel = txtproprietaire.Text.Trim();
+            voiture.etatGeneral = txtetat.Text.Trim();
+            voiture.dateAchat = dateAchat;
+            voiture.derniereRevision = derniereRevision;
+            voiture.garantitRestant = txtgarantie.Text.Trim();
+            voiture.assurance = txtassurance.Text.Trim();
+
+            db.SaveChanges();
+            MessageBox.Show("Voiture modifiée avec succès.");
+            DialogResult = true;
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"Impossible de modifier la voiture : {exception.Message}");
         }
     }
 }
-
-

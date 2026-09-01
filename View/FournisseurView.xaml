@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravailPratique2.View"
         mc:Ignorable="d"
-        Title="FournisseurView" Height="450" Width="800">
+        Title="Gestion de garage — Fournisseur" Height="520" Width="980"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl>
            
@@ -16,10 +17,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="Approvision Voiture" Width="200" Margin="0,0,10,0" Click="AjouterVoiture_Click"/>
+                        <Button Content="Approvisionner le stock" Width="200" Margin="0,0,10,0" Click="AjouterVoiture_Click"/>
                         
                     </StackPanel>
                     <DataGrid Grid.Row="1"  ItemsSource="{Binding Voitures}" AutoGenerateColumns="False" HeadersVisibility="Column"
+                               IsReadOnly="True"
                                Background="White" BorderBrush="#DDD" BorderThickness="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Marque" Binding="{Binding marque}"/>
@@ -33,10 +35,10 @@
                             <DataGridTextColumn Header="Transmission" Binding="{Binding transmission}"/>
                             <DataGridTextColumn Header="Vin" Binding="{Binding vin}"/>
                             <DataGridTextColumn Header="Proprietaire" Binding="{Binding proprietaireActuel}"/>
-                            <DataGridTextColumn Header="Etat" Binding="{Binding etatGeneal}"/>
+                            <DataGridTextColumn Header="État" Binding="{Binding etatGeneral}"/>
                             <DataGridTextColumn Header="Date Achat" Binding="{Binding dateAchat}"/>
                             <DataGridTextColumn Header="Revision" Binding="{Binding derniereRevision}"/>
-                            <DataGridTextColumn Header="Garantie" Binding="{Binding garantie}"/>
+                            <DataGridTextColumn Header="Garantie" Binding="{Binding garantitRestant}"/>
                             <DataGridTextColumn Header="Assurance" Binding="{Binding assurance}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -50,9 +52,10 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
 
-                        <Button Content="Approvision Piece" Click="AjouterPiece_Click" Width="200" Margin="0,0,10,0"/>
+                        <Button Content="Approvisionner les pièces" Click="AjouterPiece_Click" Width="200" Margin="0,0,10,0"/>
                     </StackPanel>
                     <DataGrid Grid.Row="1" ItemsSource="{Binding Pieces}" AutoGenerateColumns="False" HeadersVisibility="Column"
+                              IsReadOnly="True"
                               CanUserAddRows="False" Background="White" BorderBrush="#DDD" BorderThickness="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nom Piece" Binding="{Binding nom_de_piece}"/>

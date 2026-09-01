@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace TravailPratique2.Models
+namespace TravailPratique2.Models;
+
+internal sealed class AppDbContext : DbContext
 {
-    class AppDbContext : DbContext
+    public DbSet<Utilisateur> Utilisateurs => Set<Utilisateur>();
+    public DbSet<Reparation> Reparations => Set<Reparation>();
+    public DbSet<Voiture> Voitures => Set<Voiture>();
+    public DbSet<Piece> Pieces => Set<Piece>();
+    public DbSet<Devis> Devis => Set<Devis>();
+    public DbSet<Facture> Factures => Set<Facture>();
+
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        public DbSet<Models.Utilisateur> Utilisateurs { get; set; }
-        public DbSet<Models.Reparation> Reparations { get; set; }
-        public DbSet<Models.Voiture> Voitures { get; set; }
-        public DbSet<Models.Piece> Pieces { get; set; }
-        public DbSet<Models.Devis> Devis { get; set; }
-        public DbSet<Models.Facture>Factures { get; set; }
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        if (!options.IsConfigured)
         {
-            string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial " +
-                "Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;" +
-                "Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            string dbname = "TP2DB";
-            options.UseSqlServer($"{connection};Database={dbname};");
-
+            options.UseSqlServer(
+                "Server=(localdb)\\MSSQLLocalDB;Database=TP2DB;" +
+                "Trusted_Connection=True;TrustServerCertificate=True;");
         }
-            
     }
 }

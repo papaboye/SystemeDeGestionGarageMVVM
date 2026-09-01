@@ -13,9 +13,9 @@ namespace TravailPratique2.Models
         [Key]
         public int id { get; set; }
         public double Total { get; set; }
-        public string reparation { get; set; }
-        public string typeIntervention { get; set; }
-        public string description { get; set; }
+        public string reparation { get; set; } = string.Empty;
+        public string typeIntervention { get; set; } = string.Empty;
+        public string description { get; set; } = string.Empty;
         public bool estvalidee { get; set; }
         public List<Piece> piece = new List<Piece>();
        
