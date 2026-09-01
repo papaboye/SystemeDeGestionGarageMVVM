@@ -1,100 +1,176 @@
-# Garage Management — WPF et MVVM
+# Système de gestion de garage automobile
 
 [![Build](https://github.com/papaboye/SystemeDeGestionGarageMVVM/actions/workflows/build.yml/badge.svg)](https://github.com/papaboye/SystemeDeGestionGarageMVVM/actions/workflows/build.yml)
+[![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![WPF](https://img.shields.io/badge/UI-WPF-0078D4?logo=windows&logoColor=white)](https://learn.microsoft.com/dotnet/desktop/wpf/)
 
-Application de bureau Windows pour gérer les activités principales d'un garage automobile : inventaire des véhicules et des pièces, utilisateurs, demandes de réparation, devis et factures.
+Application de bureau Windows développée en **C#** avec **WPF** et une organisation **MVVM**. Elle permet de gérer le stock d'un garage automobile, les utilisateurs, les demandes de réparation, les devis et les factures.
 
-Ce projet met en pratique **C#**, **WPF**, le patron **MVVM**, **Entity Framework Core**, **SQL Server LocalDB**, l'importation CSV et la consommation d'une API REST.
+Ce projet a été réalisé dans un contexte académique afin de mettre en pratique la conception d'une application de bureau, la persistance des données avec Entity Framework Core, l'importation de fichiers CSV et la consommation d'une API REST.
 
-## Fonctionnalités
+## Aperçu
 
-| Espace | Fonctions principales |
-| --- | --- |
-| Propriétaire | Consulter et administrer les véhicules, les pièces et les utilisateurs |
-| Fournisseur | Approvisionner le stock de véhicules et de pièces |
-| Client | Consulter le catalogue, demander une réparation et valider un devis |
+L'application démarre sur une fenêtre de connexion. Après authentification, l'espace de travail est déterminé automatiquement par le rôle du compte : propriétaire, fournisseur ou client.
 
-L'application calcule le montant d'un devis à partir des pièces et de la main-d'œuvre, puis génère une facture lorsque le devis est accepté.
+Le projet couvre notamment :
+
+- la gestion CRUD des véhicules, des pièces et des utilisateurs;
+- la consultation du catalogue par les clients;
+- l'approvisionnement du stock par un fournisseur;
+- la création d'une demande de réparation;
+- le calcul d'un devis à partir du prix d'une pièce et de la main-d'œuvre;
+- la génération d'une facture lorsqu'un devis de réparation est accepté;
+- l'initialisation automatique d'une base SQL Server LocalDB à partir de données de démonstration.
+
+## Fonctionnalités par rôle
+
+### Propriétaire
+
+- consulter le stock des véhicules et des pièces;
+- ajouter, modifier et supprimer des véhicules;
+- ajouter, modifier et supprimer des pièces;
+- ajouter, modifier et supprimer des utilisateurs;
+- contrôler les données saisies : VIN unique, prix, kilométrage, année et dates valides.
+
+### Fournisseur
+
+- consulter le stock des véhicules;
+- consulter le stock des pièces;
+- ajouter une voiture au stock;
+- ajouter une pièce au stock;
+- empêcher les doublons de VIN et de pièces.
+
+### Client
+
+- consulter les véhicules disponibles;
+- rechercher un véhicule et générer un devis d'achat;
+- consulter le catalogue des pièces;
+- soumettre une demande de réparation;
+- sélectionner une voiture et une pièce pour la demande;
+- consulter l'historique des réparations.
+
+### Cycle réparation, devis et facture
+
+Pour une demande de réparation, l'application :
+
+1. vérifie les informations saisies et les éléments sélectionnés;
+2. calcule le montant du devis;
+3. affiche le devis au client;
+4. enregistre la réparation et le devis;
+5. génère automatiquement une facture si le devis est accepté.
+
+Le calcul actuel utilise le prix de la pièce sélectionnée et une main-d'œuvre fixe de **200**. Le mode de paiement de démonstration est « Espèces ».
 
 ## Architecture
 
-~~~mermaid
+Le projet utilise une organisation MVVM pragmatique : les vues XAML décrivent l'interface, les ViewModels portent l'état et les opérations de présentation, tandis que les modèles représentent les données du garage.
+
+```mermaid
 flowchart TD
-    View["Vues WPF / XAML"] --> VM["ViewModels"]
-    VM --> EF["Entity Framework Core"]
+    V["Vues WPF / XAML"] --> VM["ViewModels"]
+    VM --> S["Services"]
+    S --> EF["Entity Framework Core"]
     EF --> DB["SQL Server LocalDB"]
-    CSV["Données CSV"] --> Seed["Initialisation"]
-    Seed --> DB
-    API["DummyJSON REST API"] --> Auth["Authentification de démonstration"]
-    Auth --> VM
-~~~
+    CSV["Fichiers CSV"] --> S
+    VM --> API["API REST DummyJSON"]
+```
 
-La base **TP2DB** est créée et migrée automatiquement au démarrage. Les fichiers CSV fournis contiennent uniquement des données fictives et initialisent les véhicules et les pièces sans créer de doublons.
+Au démarrage :
 
-Une description plus détaillée est disponible dans [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+1. les migrations Entity Framework Core sont appliquées;
+2. la base `TP2DB` est créée si nécessaire;
+3. les véhicules et les pièces des fichiers CSV sont importés;
+4. les doublons sont évités grâce au VIN des véhicules et au nom des pièces;
+5. les comptes de démonstration sont chargés depuis DummyJSON.
 
-## Technologies
+La documentation technique détaillée se trouve dans [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-- .NET 8 et C#;
-- WPF et XAML;
-- Entity Framework Core 9;
-- SQL Server Express LocalDB;
-- CsvHelper;
-- Newtonsoft.Json;
-- API REST DummyJSON;
-- GitHub Actions.
+## Technologies utilisées
+
+| Technologie | Utilisation |
+| --- | --- |
+| C# / .NET 8 | Langage et plateforme d'exécution |
+| WPF / XAML | Interface graphique Windows |
+| MVVM | Séparation de l'interface et de la logique de présentation |
+| Entity Framework Core 9 | Accès aux données et migrations |
+| SQL Server Express LocalDB | Base de données locale |
+| CsvHelper | Lecture des fichiers CSV |
+| Newtonsoft.Json | Désérialisation des réponses JSON |
+| HttpClient | Appel de l'API REST |
+| GitHub Actions | Compilation continue sur Windows |
 
 ## Prérequis
 
-- Windows 10 ou 11;
+- Windows 10 ou Windows 11;
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0);
-- SQL Server Express LocalDB, fourni notamment avec Visual Studio.
+- SQL Server Express LocalDB, généralement installé avec Visual Studio;
+- une connexion Internet lors de la connexion, afin de charger les comptes DummyJSON.
 
-## Installation
+## Installation et exécution
 
-~~~powershell
+```powershell
 git clone https://github.com/papaboye/SystemeDeGestionGarageMVVM.git
 cd SystemeDeGestionGarageMVVM
+
 dotnet restore
+dotnet build TravailPratique2.csproj --configuration Release
 dotnet run --project TravailPratique2.csproj
-~~~
+```
 
-Les fichiers **vehicules_db.csv** et **reparations_db.csv** sont automatiquement copiés dans le dossier de sortie lors de la compilation.
+Le projet cible Windows (`net8.0-windows`) et ne peut donc pas être exécuté comme application graphique WPF sur Linux ou macOS.
 
-## Authentification de démonstration
+Les fichiers `vehicules_db.csv` et `reparations_db.csv` sont copiés automatiquement dans le dossier de sortie pendant la compilation. Le nom `reparations_db.csv` est conservé pour respecter la structure du projet initial; il contient le catalogue des pièces utilisé par l'application.
 
-L'écran de connexion charge les comptes publics de démonstration fournis par [DummyJSON](https://dummyjson.com/docs/users). Le rôle du compte détermine automatiquement l'espace ouvert :
+## Connexion de démonstration
 
-- admin → propriétaire;
-- moderator → fournisseur;
-- user → client.
+La fenêtre de connexion récupère les utilisateurs depuis [DummyJSON](https://dummyjson.com/docs/users). Le rôle retourné par l'API ouvre automatiquement l'espace correspondant :
 
-Cette authentification sert uniquement à la démonstration du projet. Une application de production utiliserait un fournisseur d'identité et ne conserverait jamais de mots de passe en clair.
+| Rôle API | Espace ouvert |
+| --- | --- |
+| `admin` | Propriétaire |
+| `moderator` | Fournisseur |
+| `user` | Client |
 
-## Structure du projet
+Pour tester l'application, utiliser les identifiants d'un utilisateur de démonstration renvoyé par l'API [DummyJSON](https://dummyjson.com/users). Les utilisateurs ajoutés depuis l'espace propriétaire sont enregistrés dans la base locale pour la gestion interne du garage; la connexion de démonstration actuelle s'appuie sur les comptes chargés par l'API.
 
-~~~text
-├── Models/               Entités et contexte Entity Framework
-├── View/                 Fenêtres et composants WPF
-├── ViewModels/           État, commandes et logique de présentation
-├── Services/             Initialisation de la base
-├── Migrations/           Schéma Entity Framework Core
-├── docs/                 Documentation technique
-├── vehicules_db.csv      Jeu de données initial des véhicules
-└── reparations_db.csv    Jeu de données initial des pièces
-~~~
+## Structure du dépôt
 
-## Qualité
+```text
+.
+├── Models/                 Entités métier et contexte Entity Framework
+├── View/                   Fenêtres et interfaces WPF
+├── ViewModels/             État et logique de présentation
+├── Services/               Initialisation de la base et services métier
+├── Migrations/             Migrations Entity Framework Core
+├── docs/                   Documentation technique
+├── vehicules_db.csv        Données fictives initiales des véhicules
+├── reparations_db.csv      Données fictives initiales des pièces
+├── TravailPratique2.csproj Fichier projet .NET
+└── .github/workflows/      Compilation GitHub Actions
+```
 
-Le workflow GitHub Actions restaure les dépendances et compile automatiquement le projet en mode **Release** pour chaque Pull Request vers **master**.
+## Intégration continue
 
-## Limites et améliorations prévues
+Le workflow [`.github/workflows/build.yml`](.github/workflows/build.yml) :
 
-- l'application WPF fonctionne uniquement sous Windows;
-- l'authentification actuelle est une démonstration basée sur un service externe;
-- le rôle vendeur et les tests automatisés de l'interface restent à ajouter;
-- l'interface peut encore être enrichie avec davantage de commandes MVVM.
+- s'exécute sur un environnement Windows;
+- restaure les dépendances .NET;
+- compile le projet en configuration `Release`;
+- s'exécute sur les branches `master` et `portfolio-cleanup`, ainsi que sur les Pull Requests vers `master`.
+
+## Limites connues et prochaines évolutions
+
+- l'application est limitée à Windows et à SQL Server Express LocalDB;
+- l'authentification DummyJSON est uniquement destinée à la démonstration;
+- les mots de passe et les données de comptes locaux ne sont pas encore protégés comme dans une application de production;
+- le rôle vendeur n'est pas encore implémenté;
+- l'achat d'une voiture génère actuellement un devis de démonstration, sans gestion complète de la transaction et de la diminution du stock;
+- la main-d'œuvre est actuellement une valeur fixe;
+- certaines actions d'interface restent dans le code-behind et pourraient être déplacées vers des commandes MVVM;
+- des tests unitaires et des tests d'interface restent à ajouter.
 
 ## Auteur
 
-**Papa Alioune Boye** — étudiant à la maîtrise en informatique à l'UQAR.
+**Papa Alioune Boye**
+
+Étudiant à la maîtrise en informatique — UQAR
